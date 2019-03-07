@@ -571,7 +571,7 @@ if (Math.random() < 0.5) {
 }
 dietary_decision_experiment.push(setup_block);
 dietary_decision_experiment.push(start_decision_block);
-for (var i = 0; i < stims.length - 1; i++) {
+for (var i = 0; i < stims.length; i++) {
   dietary_decision_experiment.push(decision_block);
 }
 // dietary_decision_experiment.push(post_task_block)

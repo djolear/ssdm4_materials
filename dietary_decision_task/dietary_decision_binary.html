@@ -24,15 +24,12 @@
 <script src='js/jspsych/poldrack_plugins/jspsych-single-stim-button.js'></script>
 <script src='js/jspsych/plugins/jspsych-survey-text.js'></script>
 <script src='js/utils/poldrack_utils.js'></script>
-<script src='dietary_decision/experiment_unitary.js'></script> 
+<script src='dietary_decision/experiment_binary.js'></script>
 <script src='dietary_decision/mmturkey.js'></script>
 <script src="js/etc.js"></script>
 
 
 <script>
-//<script src='dietary_decision/experiment_old.js'></scrip...
-
-
 $( document ).ready(function() {
 
     expfactory_finished = false;
@@ -58,8 +55,7 @@ $( document ).ready(function() {
                jsPsych.turk.submitToTurk({"completion_time": (new Date().getTime())});
             };
 			saveData("ssdm3/" + id_str.slice(7, end_str - 2) + ".json", jsPsych.data.dataAsJSON(), final_submit, final_submit);
-			
-			window.location = "https://nytimes.com"
+			jsPsych.data.localSave(fn, 'csv');
 
 			expfactory_finished = true;
 		}

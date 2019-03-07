@@ -43,6 +43,18 @@
   vertical-align:top;
 }
 
+.dd_image_button {
+  max-width: 7vw;
+  max-height: 7vw;
+  background: #505050;
+  margin: 1vw;
+  position: relative;
+  color: #fff;
+  border-radius:15px;
+  font-size: 22px;
+  vertical-align:top;
+}
+
 .dd_response_button:hover {
   color: red;
 }

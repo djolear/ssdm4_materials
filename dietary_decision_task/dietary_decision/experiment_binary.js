@@ -91,11 +91,13 @@ var getDecisionStim = function() {
 
 	var left_stim = base_path + curr_pairing[0]
 	var right_stim = base_path + curr_pairing[1]
-	return "<div class ='left center-content'><img src = " + left_stim
-			+ ' </img></div>'
-			+ "<div class ='right center-content'><img src = " + right_stim
-			+ ' </img></div>' + decision_response_area
+	return "<div class ='left center-content'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
+			+ ' </button></div>'
+			+ "<div class ='right center-content'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
+			+ ' </button></div>' 
 }
+
+
 
 var getDecisionText = function() {
 	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose between eating various foods.  In each trial,  you will see two foods.  Please select the food that you would rather have.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in one random decision.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
@@ -233,9 +235,14 @@ var taste_response_area = '<div class = dd_response_div>'
 		+ '<button class = dd_response_button id = Very_Tasty>Very Tasty</button></div>'
 
 // Higher value indicates choosing the food item over the neutral food item.
+// var decision_response_area = '<div class = dd_response_div>'
+// 		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
+// 		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
 var decision_response_area = '<div class = dd_response_div>'
 		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
 		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
+
+
 
 var base_path = 'dietary_decision/images/'
 var stims = [ '100Grand.bmp', 'banana.bmp', 'blueberryyogart.bmp',
