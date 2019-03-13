@@ -21,6 +21,18 @@
   z-index: 2;
 }
 
+.dd_ratingQbox {
+  width:60vw;
+  height: 35vw;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%,-68%);
+  z-index: 2;
+  text-align: center;
+}
+
 .dd_response_div {
   width: 40w;
   height: 8vw;
@@ -43,9 +55,9 @@
   vertical-align:top;
 }
 
-.dd_image_button {
-  max-width: 7vw;
-  max-height: 7vw;
+.dd_image_button_left {
+  max-width: 25px;
+  max-height: 25px;
   background: #505050;
   margin: 1vw;
   position: relative;
@@ -53,6 +65,20 @@
   border-radius:15px;
   font-size: 22px;
   vertical-align:top;
+  float: left;
+}
+
+.dd_image_button_right {
+  max-width: 25px;
+  max-height: 25px;
+  background: #505050;
+  margin: 1vw;
+  position: relative;
+  color: #fff;
+  border-radius:15px;
+  font-size: 22px;
+  vertical-align:top;
+  float: right;
 }
 
 .dd_response_button:hover {

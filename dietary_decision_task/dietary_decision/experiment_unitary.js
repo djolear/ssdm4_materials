@@ -87,7 +87,8 @@ var getTasteStim = function() {
 var getDecisionStim = function() {
 	curr_stim = decision_stims.shift()
 	var stim = base_path + curr_stim
-	return '<div class = dd_stimBox><img class = dd_Stim src = ' + stim
+	return '<div class = dd_centerbox><p class = "center-block-text">Do you want to EAT this food?</p></div>' + 
+	'<div class = dd_stimBox><img class = dd_Stim src = ' + stim
 			+ ' </img></div>' + decision_response_area
 }
 
@@ -98,14 +99,15 @@ var getDecisionStim = function() {
 
 // 	var left_stim = base_path + curr_pairing[0]
 // 	var right_stim = base_path + curr_pairing[1]
-// 	return "<div class ='left center-content'><img src = " + left_stim
+// 	return '<div class = dd_centerbox><p class = "block-text">Do you want to EAT this food?</p></div>' +
+// 	"<div class ='left center-content'><img src = " + left_stim
 // 			+ ' </img></div>'
 // 			+ "<div class ='right center-content'><img src = " + right_stim
 // 			+ ' </img></div>' + decision_response_area
 // }
 
 var getDecisionText = function() {
-	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose between eating various foods.  In each trial,  you will see two foods.  Please select the food that you would rather have.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in one random decision.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
+	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose whether or not to eat various foods.  In each trial,  you will see one foods.  Only use the neutral key if absolutely necessary.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in one random decision.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
 
 }
 

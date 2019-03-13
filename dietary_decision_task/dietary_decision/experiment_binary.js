@@ -239,12 +239,12 @@ var taste_response_area = '<div class = dd_response_div>'
 // 		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
 // 		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
 var decision_response_area = '<div class = dd_response_div>'
-		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
-		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
+		+ '<button class = dd_image_button_left id = Left_Stim>Left</button>'
+		+ '<button class = dd_image_button_right id = Right_Stim>Right</button></div>'
 
 
 
-var base_path = 'dietary_decision/images/'
+var base_path = 'dietary_decision/images_small/'
 var stims = [ '100Grand.bmp', 'banana.bmp', 'blueberryyogart.bmp',
 //		'brocollincauliflower.bmp', 'butterfinger.bmp', 'carrots.bmp',
 //		'cellery.bmp', 'cherryicecream.bmp',
