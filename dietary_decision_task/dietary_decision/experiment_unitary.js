@@ -210,6 +210,15 @@ var getInstructFeedback = function() {
 	return '<div class = centerbox><p class = "center-block-text">'
 			+ feedback_instruct_text + '</p></div>'
 }
+
+
+// var consent = {
+//       type:'external-html',
+//       url: "external_page.html",
+//       cont_btn: "start",
+//       check_fn: check_consent
+//   };
+
 /* ************************************ */
 /* Define experimental variables */
 /* ************************************ */
