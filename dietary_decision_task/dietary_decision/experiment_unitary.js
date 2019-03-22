@@ -223,7 +223,7 @@ var getInstructFeedback = function() {
 /* Define experimental variables */
 /* ************************************ */
 // generic task variables
-var run_attention_checks = false
+var run_attention_checks = true
 var attention_check_thresh = 0.65
 var sumInstructTime = 0 // ms
 var instructTimeThresh = 0 // /in seconds
@@ -260,23 +260,23 @@ var decision_response_area = '<div class = dd_response_div>'
 
 var base_path = 'dietary_decision/images/'
 var stims = [ '100Grand.bmp', 'banana.bmp', 'blueberryyogart.bmp',
-//		'brocollincauliflower.bmp', 'butterfinger.bmp', 'carrots.bmp',
-//		'cellery.bmp', 'cherryicecream.bmp',
-// 'ChipsAhoy.bmp', 'cookiencream.bmp', 'cookies.bmp', 'cranberries.bmp',
-// 'Doritosranch.bmp', 'FamousAmos.bmp', 'ffraspsorbet.bmp',
-// 'FlamingCheetos.bmp',
-// 'frozenyogart.bmp', 'Ghiradelli.bmp', 'grannysmith.bmp', 'HoHo.bmp',
-// 'icecreamsandwich.bmp', 'keeblerfudgestripes.bmp', 'keeblerrainbow.bmp',
-// 'KitKat.bmp',
-// 'laysclassic.bmp', 'Lindt.bmp', 'mixedyogart.bmp', 'MrsFields.bmp',
-// 'orange.bmp',
-// 'orangejello.bmp', 'Oreos.bmp', 'raisins.bmp', 'reddelicious.bmp',
-// 'redgrapes.bmp', 'Reeses.bmp', 'RiceKrispyTreat.bmp', 'ruffles.bmp',
-// 'sbcrackers.bmp', 'sbdietbar.bmp', 'slimfastC.bmp', 'slimfastV.bmp',
-// 'specialKbar.bmp',
-// 'strawberries.bmp', 'strussel.bmp', 'uToberlorone.bmp', 'uTwix.bmp',
-// 'wheatcrisps.bmp',
-// 'whitegrapes.bmp', 'wwbrownie.bmp', 'wwmuffin.bmp'
+		'brocollincauliflower.bmp', 'butterfinger.bmp', 'carrots.bmp',
+		'cellery.bmp', 'cherryicecream.bmp',
+'ChipsAhoy.bmp', 'cookiencream.bmp', 'cookies.bmp', 'cranberries.bmp',
+'Doritosranch.bmp', 'FamousAmos.bmp', 'ffraspsorbet.bmp',
+'FlamingCheetos.bmp',
+'frozenyogart.bmp', 'Ghiradelli.bmp', 'grannysmith.bmp', 'HoHo.bmp',
+'icecreamsandwich.bmp', 'keeblerfudgestripes.bmp', 'keeblerrainbow.bmp',
+'KitKat.bmp',
+'laysclassic.bmp', 'Lindt.bmp', 'mixedyogart.bmp', 'MrsFields.bmp',
+'orange.bmp',
+'orangejello.bmp', 'Oreos.bmp', 'raisins.bmp', 'reddelicious.bmp',
+'redgrapes.bmp', 'Reeses.bmp', 'RiceKrispyTreat.bmp', 'ruffles.bmp',
+'sbcrackers.bmp', 'sbdietbar.bmp', 'slimfastC.bmp', 'slimfastV.bmp',
+'specialKbar.bmp',
+'strawberries.bmp', 'strussel.bmp', 'uToberlorone.bmp', 'uTwix.bmp',
+'wheatcrisps.bmp',
+'whitegrapes.bmp', 'wwbrownie.bmp', 'wwmuffin.bmp'
 ]
 var images = []
 for (var i = 0; i < stims.length; i++) {
