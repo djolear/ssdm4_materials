@@ -107,7 +107,7 @@ var getDecisionStim = function() {
 // }
 
 var getDecisionText = function() {
-	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose whether or not to eat various foods.  In each trial,  you will see one foods.  Only use the neutral key if absolutely necessary.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in one random decision.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
+	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose whether or not to eat various foods.  In each trial,  you will see one foods.  Only use the neutral key if absolutely necessary.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in a randomly chosen trial.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
 
 }
 
