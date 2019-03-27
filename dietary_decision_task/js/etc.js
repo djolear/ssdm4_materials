@@ -49,15 +49,15 @@ function saveData(filename, filedata, callback, error_callback){
    });
 }
 
-function load_data(filename, callback, error_callback){
-   $.ajax({
-      type: "post",
-      url: 'https://web.stanford.edu/~lampinen/cgi-bin/recover_auxiliary_data.php', 
-      cache: false,
-      data: {filename: filename},
-      dataType: 'json',
-      success: callback,
-      error: error_callback});
-}
+// function load_data(filename, callback, error_callback){
+//    $.ajax({
+//       type: "post",
+//       url: 'https://web.stanford.edu/~lampinen/cgi-bin/recover_auxiliary_data.php', 
+//       cache: false,
+//       data: {filename: filename},
+//       dataType: 'json',
+//       success: callback,
+//       error: error_callback});
+// }
 
 

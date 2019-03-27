@@ -2,14 +2,7 @@
 /* Define helper functions */
 /* ************************************ */
 
-function check_consent (){
-  if ($('#consent_checkbox').is(':checked')) {
-    return true;
-  } else {
-    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
-    return false;
-  } return false;
-}
+
 
 function toObject(arr) {
   var rv = {};
@@ -400,7 +393,7 @@ var end_block = {
 	on_finish : assessPerformance
 };
 
-var feedback_instruct_text = 'Welcome to the experiment. This task will take around 15 minutes. Press <strong>enter</strong> to begin.'
+var feedback_instruct_text = 'Welcome to the study. In this study, first you will complete a food preference task. Next, you will be redirected to a page where you will complete some surveys. Once you complete the surveys, you will be given a completion code. The entire study will take 30 minutes.  Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
 	type : 'poldrack-text',
 	data : {
@@ -593,25 +586,48 @@ var decision_block = {
       'trial_num': current_trial
     })
     current_trial += 1
-    saveData();
+    
+    var id_str = jsPsych.data.getData()[1].responses;
+	var end_str = id_str.length;	
+	var id = id_str.slice(7, end_str - 2);
+    //save data
+    $.ajax({
+      type: 'post',
+      cache: false,
+      url: 'https://web.stanford.edu/~djolear/cgi-bin/save_data.php', 
+      // xhrFields: {
+      //   withCredentials: true
+      // },
+      // data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
+      data: {filename: "ssdm4/" + id_str.slice(7, end_str - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
+
+      // success: function(response){return "success"},
+      // error: function(xhr, status){return "error"}
+      // success: function(){return},
+      // error: function(){return}
+   })
   }
 }
 
 //data/server communication
-function saveData(){
-	// var id_str = jsPsych.data.getData()[1].responses;
-	// var end_str = id_str.length;	
-	// var id = id_str.slice(7, end_str - 2);
+function saveData(data){
+	var id_str = jsPsych.data.getData()[1].responses;
+	var end_str = id_str.length;	
+	var id = id_str.slice(7, end_str - 2);
    $.ajax({
       type: 'post',
       cache: false,
       url: 'https://web.stanford.edu/~djolear/cgi-bin/save_data.php', 
-      xhrFields: {
-        withCredentials: true
-      },
-      data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
-      success: function(response){return "success"},
-      error: function(xhr, status){return "error"}
+      // xhrFields: {
+      //   withCredentials: true
+      // },
+      // data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
+      data: {filename: "ssdm4/" + id_str.slice(7, end_str - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
+
+      // success: function(response){return "success"},
+      // error: function(xhr, status){return "error"}
+      success: function(){return},
+      error: function(){return}
    });
 }
 
@@ -660,9 +676,7 @@ if (Math.random() < 0.5) {
 dietary_decision_experiment.push(start_decision_block);
 for (var i = 0; i < stims.length; i++) {
   dietary_decision_experiment.push(decision_block);
-  // if (i % 2 == 0) {
-  // 	saveData();
-  // }
+
 }
 dietary_decision_experiment.push(post_task_block)
 dietary_decision_experiment.push(end_block);
