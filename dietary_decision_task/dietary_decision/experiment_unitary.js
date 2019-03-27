@@ -2,6 +2,14 @@
 /* Define helper functions */
 /* ************************************ */
 
+function check_consent (){
+  if ($('#consent_checkbox').is(':checked')) {
+    return true;
+  } else {
+    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
+    return false;
+  } return false;
+}
 
 function toObject(arr) {
   var rv = {};
@@ -108,6 +116,29 @@ var getDecisionStim = function() {
 
 var getDecisionText = function() {
 	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose whether or not to eat various foods.  In each trial,  you will see one foods.  Only use the neutral key if absolutely necessary.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in a randomly chosen trial.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
+
+}
+
+var getConsentText = function() {
+	return '<div id="consent"> <p> <div align="left">' + 
+  
+  '<b>DESCRIPTION:</b> You are invited to participate in a research study on emotion and dietary decision-making. The overall purpose of the research is to learn more about the subjective qualities of emotion and your food preferences.  In this study you may be asked to complete questionnaires. You may also be asked to solve various types of problems and make decisions about foods or other financial options.</p>' +
+
+  '<b>TIME INVOLVEMENT:</b>  Your participation will take approximately 30 minutes.</p>' +
+
+  '<b>RISKS AND BENEFITS:</b>  We will do everything possible to maintain confidentiality and your name will not be associated with any of the data that you provide. Beyond any intrinsic satisfaction you feel in part of this research, there are no other benefits for you in participating. We cannot and do not guarantee or promise that you will receive any benefits from this study.</p>' +
+
+  '<b>PAYMENTS:</b>  You will receive payment as instructed in the general instructions of the study for your participation.</p>' +
+
+  '<b> PARTICIPANT RIGHTS: </b> :  If you have read this form and have decided to participate in this project, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty.  You have the right to refuse to answer particular questions. Your individual privacy will be maintained in all published and written data resulting from the study. </p>' +
+
+  '<b>CONTACT INFORMATION:</b> Questions, Concerns, or Complaints: If you have any questions, concerns, or complaints about this research study, its procedures, risks and benefits, or alternative courses of treatment, you should ask the Protocol Director. You may contact Daniel O’Leary anytime at djolear@stanford.edu. </p>' +
+
+  '<b> INDEPENDENT CONTACT:</b>  If you are not satisfied with the manner in which this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a research study subject, please contact the Stanford Institutional Review Board (IRB) to speak to an informed individual who is independent of the research team at (650)-723-2480 or toll free at 1-866-680-2906.  You can also write to the Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor, Palo Alto, CA 94306. </p>'
+
+  'Please print a copy of this page for your records. </p>'
+
+  '<p class = block-text>Press <strong>enter</strong> if you agree to participate in this study. Otherwise, close this page.</p>'
 
 }
 
@@ -317,6 +348,18 @@ var attention_node = {
 		return run_attention_checks
 	}
 }
+
+var consent = {
+	type : 'poldrack-text',
+	timing_response : 180000,
+	data : {
+		trial_id : 'consent_text'
+	},
+	text : getConsentText,
+	cont_key : [ 13 ],
+	timing_post_trial : 500,
+};
+
 
 // Screen for worker ID
 
@@ -557,7 +600,7 @@ var decision_block = {
 /* create experiment definition array */
 var dietary_decision_experiment = [];
 
-
+dietary_decision_experiment.push(consent);
 dietary_decision_experiment.push(worker_ID);
 dietary_decision_experiment.push(instruction_node);
 if (Math.random() < 0.5) {
@@ -586,7 +629,7 @@ dietary_decision_experiment.push(start_decision_block);
 for (var i = 0; i < stims.length; i++) {
   dietary_decision_experiment.push(decision_block);
 }
-// dietary_decision_experiment.push(post_task_block)
+dietary_decision_experiment.push(post_task_block)
 dietary_decision_experiment.push(end_block);
 
 
