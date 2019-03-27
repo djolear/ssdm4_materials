@@ -434,7 +434,7 @@ var start_taste_block = {
 var setup_block = {
 	type : 'call-function',
 	data : {
-		trial_id : 'setup test'
+		trial_id : 'setup_test'
 	},
 	func : setUpTest,
 	timing_post_trial : 0
@@ -569,7 +569,7 @@ if (Math.random() < 0.5) {
 	for (var i = 0; i < stims.length; i++) {
 		dietary_decision_experiment.push(taste_block);
 	}
-	dietary_decision_experiment.push(attention_node)
+	dietary_decision_experiment.push(attention_node);
 } else {
 	dietary_decision_experiment.push(start_taste_block);
 	for (var i = 0; i < stims.length; i++) {
@@ -579,8 +579,9 @@ if (Math.random() < 0.5) {
 	for (var i = 0; i < stims.length; i++) {
 		dietary_decision_experiment.push(health_block);
 	}
+	dietary_decision_experiment.push(attention_node);
 }
-dietary_decision_experiment.push(setup_block);
+//dietary_decision_experiment.push(setup_block);
 dietary_decision_experiment.push(start_decision_block);
 for (var i = 0; i < stims.length; i++) {
   dietary_decision_experiment.push(decision_block);
