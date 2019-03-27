@@ -235,13 +235,6 @@ var getInstructFeedback = function() {
 }
 
 
-// var consent = {
-//       type:'external-html',
-//       url: "external_page.html",
-//       cont_btn: "start",
-//       check_fn: check_consent
-//   };
-
 /* ************************************ */
 /* Define experimental variables */
 /* ************************************ */
@@ -284,22 +277,22 @@ var decision_response_area = '<div class = dd_response_div>'
 var base_path = 'dietary_decision/images/'
 var stims = [ '100Grand.bmp', 'banana.bmp', 'blueberryyogart.bmp',
 		'brocollincauliflower.bmp', 'butterfinger.bmp', 'carrots.bmp',
-// 		'cellery.bmp', 'cherryicecream.bmp',
-// 'ChipsAhoy.bmp', 'cookiencream.bmp', 'cookies.bmp', 'cranberries.bmp',
-// 'Doritosranch.bmp', 'FamousAmos.bmp', 'ffraspsorbet.bmp',
-// 'FlamingCheetos.bmp',
-// 'frozenyogart.bmp', 'Ghiradelli.bmp', 'grannysmith.bmp', 'HoHo.bmp',
-// 'icecreamsandwich.bmp', 'keeblerfudgestripes.bmp', 'keeblerrainbow.bmp',
-// 'KitKat.bmp',
-// 'laysclassic.bmp', 'Lindt.bmp', 'mixedyogart.bmp', 'MrsFields.bmp',
-// 'orange.bmp',
-// 'orangejello.bmp', 'Oreos.bmp', 'raisins.bmp', 'reddelicious.bmp',
-// 'redgrapes.bmp', 'Reeses.bmp', 'RiceKrispyTreat.bmp', 'ruffles.bmp',
-// 'sbcrackers.bmp', 'sbdietbar.bmp', 'slimfastC.bmp', 'slimfastV.bmp',
-// 'specialKbar.bmp',
-// 'strawberries.bmp', 'strussel.bmp', 'uToberlorone.bmp', 'uTwix.bmp',
-// 'wheatcrisps.bmp',
-// 'whitegrapes.bmp', 'wwbrownie.bmp', 'wwmuffin.bmp'
+		'cellery.bmp', 'cherryicecream.bmp',
+'ChipsAhoy.bmp', 'cookiencream.bmp', 'cookies.bmp', 'cranberries.bmp',
+'Doritosranch.bmp', 'FamousAmos.bmp', 'ffraspsorbet.bmp',
+'FlamingCheetos.bmp',
+'frozenyogart.bmp', 'Ghiradelli.bmp', 'grannysmith.bmp', 'HoHo.bmp',
+'icecreamsandwich.bmp', 'keeblerfudgestripes.bmp', 'keeblerrainbow.bmp',
+'KitKat.bmp',
+'laysclassic.bmp', 'Lindt.bmp', 'mixedyogart.bmp', 'MrsFields.bmp',
+'orange.bmp',
+'orangejello.bmp', 'Oreos.bmp', 'raisins.bmp', 'reddelicious.bmp',
+'redgrapes.bmp', 'Reeses.bmp', 'RiceKrispyTreat.bmp', 'ruffles.bmp',
+'sbcrackers.bmp', 'sbdietbar.bmp', 'slimfastC.bmp', 'slimfastV.bmp',
+'specialKbar.bmp',
+'strawberries.bmp', 'strussel.bmp', 'uToberlorone.bmp', 'uTwix.bmp',
+'wheatcrisps.bmp',
+'whitegrapes.bmp', 'wwbrownie.bmp', 'wwmuffin.bmp'
 ]
 var images = []
 for (var i = 0; i < stims.length; i++) {
@@ -387,13 +380,13 @@ var end_block = {
 		trial_id : 'end',
 		exp_id : 'dietary_decision'
 	},
-	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br>Please press ENTER to continue</p></div>',
+	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br>Please press ENTER to proceed to the survey.</p></div>',
 	cont_key : [ 13 ],
 	timing_post_trial : 0,
 	on_finish : assessPerformance
 };
 
-var feedback_instruct_text = 'Welcome to the study. In this study, first you will complete a food preference task. Next, you will be redirected to a page where you will complete some surveys. Once you complete the surveys, you will be given a completion code. The entire study will take 30 minutes.  Press <strong>enter</strong> to begin.'
+var feedback_instruct_text = 'Welcome to the study. </p> <p class = center-block-text style = "font-size: 20px"> In this study, you will complete a food preference task. Next, you will be redirected to a page where you will complete some surveys. </p> <p class = center-block-text style = "font-size: 20px"> Once you complete the surveys, you will be given a completion code. </p> <p class = center-block-text style = "font-size: 20px">The entire study will take 30 minutes.  Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
 	type : 'poldrack-text',
 	data : {
@@ -595,53 +588,15 @@ var decision_block = {
       type: 'post',
       cache: false,
       url: 'https://web.stanford.edu/~djolear/cgi-bin/save_data.php', 
-      // xhrFields: {
-      //   withCredentials: true
-      // },
-      // data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
       data: {filename: "ssdm4/" + id_str.slice(7, end_str - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
 
-      // success: function(response){return "success"},
-      // error: function(xhr, status){return "error"}
-      // success: function(){return},
-      // error: function(){return}
    })
   }
 }
 
-//data/server communication
-function saveData(data){
-	var id_str = jsPsych.data.getData()[1].responses;
-	var end_str = id_str.length;	
-	var id = id_str.slice(7, end_str - 2);
-   $.ajax({
-      type: 'post',
-      cache: false,
-      url: 'https://web.stanford.edu/~djolear/cgi-bin/save_data.php', 
-      // xhrFields: {
-      //   withCredentials: true
-      // },
-      // data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
-      data: {filename: "ssdm4/" + id_str.slice(7, end_str - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
 
-      // success: function(response){return "success"},
-      // error: function(xhr, status){return "error"}
-      success: function(){return},
-      error: function(){return}
-   });
-}
 
-// var connectSurvey = {
-//   on_start: saveData,
-//   type: 'image-button-response',
-//   stimulus: getNextSlide,
-//   choices: ['Begin Survey']
-// };
 
-// function getNextSlide () {  //use to shift instruction slides
-//   var currentSlide = slideList.shift();
-//   return currentSlide
-// }
 
 /* create experiment definition array */
 var dietary_decision_experiment = [];
