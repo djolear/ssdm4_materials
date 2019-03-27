@@ -2,14 +2,6 @@
 /* Define helper functions */
 /* ************************************ */
 
-function check_consent (){
-  if ($('#consent_checkbox').is(':checked')) {
-    return true;
-  } else {
-    alert("If you wish to participate, you must check the box next to the statement 'I agree to participate in this study.'");
-    return false;
-  } return false;
-}
 
 function toObject(arr) {
   var rv = {};
@@ -93,51 +85,20 @@ var getTasteStim = function() {
 }
 
 var getDecisionStim = function() {
-	curr_stim = decision_stims.shift()
-	var stim = base_path + curr_stim
-	return '<div class = dd_centerbox><p class = "center-block-text">Do you want to EAT this food?</p></div>' + 
-	'<div class = dd_stimBox><img class = dd_Stim src = ' + stim
+	// curr_stim = decision_stims.shift()
+
+	curr_pairing = pairings_list.shift();
+
+	var left_stim = base_path + curr_pairing[0]
+	var right_stim = base_path + curr_pairing[1]
+	return "<div class ='left center-content'><img src = " + left_stim
+			+ ' </img></div>'
+			+ "<div class ='right center-content'><img src = " + right_stim
 			+ ' </img></div>' + decision_response_area
 }
 
-// var getDecisionStim = function() {
-// 	curr_stim = decision_stims.shift()
-
-// 	curr_pairing = pairings_list.shift();
-
-// 	var left_stim = base_path + curr_pairing[0]
-// 	var right_stim = base_path + curr_pairing[1]
-// 	return '<div class = dd_centerbox><p class = "block-text">Do you want to EAT this food?</p></div>' +
-// 	"<div class ='left center-content'><img src = " + left_stim
-// 			+ ' </img></div>'
-// 			+ "<div class ='right center-content'><img src = " + right_stim
-// 			+ ' </img></div>' + decision_response_area
-// }
-
 var getDecisionText = function() {
-	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose whether or not to eat various foods.  In each trial,  you will see one foods.  Only use the neutral key if absolutely necessary.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in a randomly chosen trial.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
-
-}
-
-var getConsentText = function() {
-	return '<p class = block-text><strong>Scroll down to read entire page.</strong>' +
-	' <div id="consent"> <p> <div align="left"> <b>DESCRIPTION:</b> You are invited to participate in a research study on emotion and dietary decision-making. The overall purpose of the research is to learn more about the subjective qualities of emotion and your food preferences.  In this study you may be asked to complete questionnaires. You may also be asked to solve various types of problems and make decisions about foods or other financial options.</p>' +
-
-  '<b>TIME INVOLVEMENT:</b>  Your participation will take approximately 30 minutes.</p>' +
-
-  '<b>RISKS AND BENEFITS:</b>  We will do everything possible to maintain confidentiality and your name will not be associated with any of the data that you provide. Beyond any intrinsic satisfaction you feel in part of this research, there are no other benefits for you in participating. We cannot and do not guarantee or promise that you will receive any benefits from this study.</p>' +
-
-  '<b>PAYMENTS:</b>  You will receive payment as instructed in the general instructions of the study for your participation.</p>' +
-
-  '<b> PARTICIPANT RIGHTS: </b>  If you have read this form and have decided to participate in this project, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty.  You have the right to refuse to answer particular questions. Your individual privacy will be maintained in all published and written data resulting from the study. </p>' +
-
-  '<b>CONTACT INFORMATION:</b> Questions, Concerns, or Complaints: If you have any questions, concerns, or complaints about this research study, its procedures, risks and benefits, or alternative courses of treatment, you should ask the Protocol Director. You may contact Daniel O’Leary anytime at djolear@stanford.edu. </p>' +
-
-  '<b> INDEPENDENT CONTACT:</b>  If you are not satisfied with the manner in which this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a research study subject, please contact the Stanford Institutional Review Board (IRB) to speak to an informed individual who is independent of the research team at (650)-723-2480 or toll free at 1-866-680-2906.  You can also write to the Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor, Palo Alto, CA 94306. </p>' +
-
-  'Please print a copy of this page for your records. </p>' +
-
-  '<p class = block-text>Press <strong>enter</strong> if you agree to participate in this study. Otherwise, close this page.</p></div>'
+	return '<div class = dd_centerbox><p class = "block-text">In the next block of trials you will choose between eating various foods.  In each trial,  you will see two foods.  Please select the food that you would rather have.</p><p class = block-text>Take these decisions seriously. Imagine that at the end of the experiment you had to eat the food you chose in one random decision.</p><p class = block-text>Press <strong>enter</strong> to begin.</p></div>'
 
 }
 
@@ -240,20 +201,11 @@ var getInstructFeedback = function() {
 	return '<div class = centerbox><p class = "center-block-text">'
 			+ feedback_instruct_text + '</p></div>'
 }
-
-
-// var consent = {
-//       type:'external-html',
-//       url: "external_page.html",
-//       cont_btn: "start",
-//       check_fn: check_consent
-//   };
-
 /* ************************************ */
 /* Define experimental variables */
 /* ************************************ */
 // generic task variables
-var run_attention_checks = true
+var run_attention_checks = false
 var attention_check_thresh = 0.65
 var sumInstructTime = 0 // ms
 var instructTimeThresh = 0 // /in seconds
@@ -264,7 +216,7 @@ var healthy_responses = [ 'Very_Unhealthy', 'Unhealthy', 'Neutral', 'Healthy',
 		'Very_Healthy' ]
 var tasty_responses = [ 'Very_Untasty', 'Untasty', 'Neutral', 'Tasty',
 		'Very_Tasty' ]
-var decision_responses = [ 'Strong_No', 'No', 'Neutral', 'Yes', 'Strong_Yes' ]
+var decision_responses = [ 'Left_Stim', 'Right_Stim' ]
 
 var health_response_area = '<div class = dd_response_div>'
 		+ '<button class = dd_response_button id = Very_Unhealthy>Very Unhealthy</button>'
@@ -282,16 +234,13 @@ var taste_response_area = '<div class = dd_response_div>'
 
 // Higher value indicates choosing the food item over the neutral food item.
 var decision_response_area = '<div class = dd_response_div>'
-		+ '<button class = dd_response_button id = Strong_No>Strong No</button>'
-		+ '<button class = dd_response_button id = No>No</button>'
-		+ '<button class = dd_response_button id = Neutral>Neutral</button>'
-		+ '<button class = dd_response_button id = Yes>Yes</button>'
-		+ '<button class = dd_response_button id = Strong_Yes>Strong Yes</button></div>'
+		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
+		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
 
 var base_path = 'dietary_decision/images/'
 var stims = [ '100Grand.bmp', 'banana.bmp', 'blueberryyogart.bmp',
 		'brocollincauliflower.bmp', 'butterfinger.bmp', 'carrots.bmp',
-// 		'cellery.bmp', 'cherryicecream.bmp',
+		'cellery.bmp', 'cherryicecream.bmp',
 // 'ChipsAhoy.bmp', 'cookiencream.bmp', 'cookies.bmp', 'cranberries.bmp',
 // 'Doritosranch.bmp', 'FamousAmos.bmp', 'ffraspsorbet.bmp',
 // 'FlamingCheetos.bmp',
@@ -320,7 +269,7 @@ var current_trial = 0
 var NUMPAIRINGS = 10
 var health_stims = jsPsych.randomization.shuffle(stims)
 var taste_stims = jsPsych.randomization.shuffle(stims)
-var decision_stims = jsPsych.randomization.shuffle(stims)
+var decision_stims = []
 var pairings_list = []
 var curr_pairing = []
 var reference_stim = ''
@@ -347,18 +296,6 @@ var attention_node = {
 		return run_attention_checks
 	}
 }
-
-var consent = {
-	type : 'poldrack-text',
-	timing_response : 180000,
-	data : {
-		trial_id : 'consent_text'
-	},
-	text : getConsentText,
-	cont_key : [ 13 ],
-	timing_post_trial : 500,
-};
-
 
 // Screen for worker ID
 
@@ -394,7 +331,7 @@ var end_block = {
 		trial_id : 'end',
 		exp_id : 'dietary_decision'
 	},
-	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br>Please press ENTER to continue</p></div>',
+	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br><br><a href="https://stanforduniversity.qualtrics.com/jfe/form/SV_9S2gvTSPVA7c3xX">Click here for the final portion of the experiment</a><br><br>  <button type="button" onclick="survey();">Finish</button></p></div>',
 	cont_key : [ 13 ],
 	timing_post_trial : 0,
 	on_finish : assessPerformance
@@ -476,7 +413,7 @@ var start_taste_block = {
 var setup_block = {
 	type : 'call-function',
 	data : {
-		trial_id : 'setup_test'
+		trial_id : 'setup test'
 	},
 	func : setUpTest,
 	timing_post_trial : 0
@@ -569,71 +506,36 @@ var taste_block = {
 }
 
 var decision_block = {
-  type: 'single-stim-button',
-  stimulus: getDecisionStim,
-  button_class: 'dd_response_button',
-  data: {
-    trial_id: 'stim',
-    exp_stage: 'decision'
-  },
-  timing_stim: 4000,
-  timing_response: 4000,
-  response_ends_trial: true,
-  timing_post_trial: 500,
-  on_finish: function(data) {
-    var decision_rating = decision_responses.indexOf(data.mouse_click) - 2
-    var reference_rating = JSON.stringify(stim_ratings[reference_stim])
-    var stim_rating = JSON.stringify(stim_ratings[curr_stim])
-    jsPsych.data.addDataToLastTrial({
-      'stim': curr_stim.slice(0, -4),
-      'reference': reference_stim.slice(0, -4),
-      'stim_rating': stim_rating,
-      'reference_rating': reference_rating,
-      'coded_response': decision_rating,
-      'trial_num': current_trial
-    })
-    current_trial += 1
-    saveData();
-  }
+	type : 'single-stim-button',
+	stimulus : getDecisionStim,
+	button_class : 'dd_response_button',
+	data : {
+		trial_id : 'stim',
+		exp_stage : 'decision'
+	},
+	timing_stim : 4000,
+	timing_response : 4000,
+	response_ends_trial : true,
+	timing_post_trial : 500,
+	on_finish : function(data) {
+		var decision_rating = decision_responses.indexOf(data.mouse_click)
+		var reference_rating = JSON.stringify(stim_ratings[reference_stim])
+		var stim_rating = JSON.stringify(stim_ratings[curr_stim])
+		jsPsych.data.addDataToLastTrial({
+			'left_stim' : curr_pairing[0].slice(0, -4),
+			'right_stim' : curr_pairing[1].slice(0, -4),
+			'coded_response' : decision_rating,
+			'trial_num' : current_trial
+		})
+		current_trial += 1
+	}
 }
-
-//data/server communication
-function saveData(){
-	// var id_str = jsPsych.data.getData()[1].responses;
-	// var end_str = id_str.length;	
-	// var id = id_str.slice(7, end_str - 2);
-   $.ajax({
-      type: 'post',
-      cache: false,
-      url: 'https://web.stanford.edu/~djolear/cgi-bin/save_data.php', 
-      xhrFields: {
-        withCredentials: true
-      },
-      data: {filename: "ssdm4/" + jsPsych.data.getData()[1].responses.slice(7, jsPsych.data.getData()[1].responses.length - 2) + ".json", filedata: jsPsych.data.dataAsJSON()},
-      success: function(response){return "success"},
-      error: function(xhr, status){return "error"}
-   });
-}
-
-// var connectSurvey = {
-//   on_start: saveData,
-//   type: 'image-button-response',
-//   stimulus: getNextSlide,
-//   choices: ['Begin Survey']
-// };
-
-// function getNextSlide () {  //use to shift instruction slides
-//   var currentSlide = slideList.shift();
-//   return currentSlide
-// }
 
 /* create experiment definition array */
 var dietary_decision_experiment = [];
 
-dietary_decision_experiment.push(consent);
+
 dietary_decision_experiment.push(worker_ID);
-
-
 dietary_decision_experiment.push(instruction_node);
 if (Math.random() < 0.5) {
 	dietary_decision_experiment.push(start_health_block);
@@ -644,7 +546,7 @@ if (Math.random() < 0.5) {
 	for (var i = 0; i < stims.length; i++) {
 		dietary_decision_experiment.push(taste_block);
 	}
-	dietary_decision_experiment.push(attention_node);
+	dietary_decision_experiment.push(attention_node)
 } else {
 	dietary_decision_experiment.push(start_taste_block);
 	for (var i = 0; i < stims.length; i++) {
@@ -654,17 +556,13 @@ if (Math.random() < 0.5) {
 	for (var i = 0; i < stims.length; i++) {
 		dietary_decision_experiment.push(health_block);
 	}
-	dietary_decision_experiment.push(attention_node);
 }
-//dietary_decision_experiment.push(setup_block);
+dietary_decision_experiment.push(setup_block);
 dietary_decision_experiment.push(start_decision_block);
-for (var i = 0; i < stims.length; i++) {
-  dietary_decision_experiment.push(decision_block);
-  // if (i % 2 == 0) {
-  // 	saveData();
-  // }
+for (var i = 0; i < NUMPAIRINGS; i++) {
+	dietary_decision_experiment.push(decision_block);
 }
-dietary_decision_experiment.push(post_task_block)
+// dietary_decision_experiment.push(post_task_block)
 dietary_decision_experiment.push(end_block);
 
 

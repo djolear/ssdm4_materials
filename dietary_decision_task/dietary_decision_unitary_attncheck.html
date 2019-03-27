@@ -50,14 +50,14 @@ $( document ).ready(function() {
 		
 		on_finish: function(data){
 			//saveData
-			var id_str = jsPsych.data.getData()[0].responses;
+			var id_str = jsPsych.data.getData()[1].responses;
 			var end_str = id_str.length;	
 			var id = id_str.slice(7, end_str - 2);
 			//var fn = 'dietary_decision_results_' + id_str.slice(7, end_str - 2) + '.csv'
 			var final_submit = function() {
                jsPsych.turk.submitToTurk({"completion_time": (new Date().getTime())});
             };
-			saveData("ssdm3/" + id_str.slice(7, end_str - 2) + ".json", jsPsych.data.dataAsJSON(), final_submit, final_submit);
+			saveData("ssdm4/" + id_str.slice(7, end_str - 2) + ".json", jsPsych.data.dataAsJSON(), final_submit, final_submit);
 			
 			window.location = "https://stanforduniversity.qualtrics.com/jfe/form/SV_094tgFGica5FkDX"
 
