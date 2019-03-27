@@ -74,14 +74,16 @@ var randomDraw = function(lst) {
 var getHealthStim = function() {
 	curr_stim = health_stims.shift()
 	var stim = base_path + curr_stim
-	return '<div class = dd_stimBox><img class = dd_Stim src = ' + stim
+	return '<div class = dd_centerbox><p class = "center-block-text">How HEALTHY is this food?</p></div>' +
+	'<div class = dd_stimBox><img class = dd_Stim src = ' + stim
 			+ ' </img></div>' + health_response_area
 }
 
 var getTasteStim = function() {
 	curr_stim = taste_stims.shift()
 	var stim = base_path + curr_stim
-	return '<div class = dd_stimBox><img class = dd_Stim src = ' + stim
+	return '<div class = dd_centerbox><p class = "center-block-text">How TASTY is this food?</p></div>' + 
+	'<div class = dd_stimBox><img class = dd_Stim src = ' + stim
 			+ ' </img></div>' + taste_response_area
 }
 
@@ -380,7 +382,7 @@ var end_block = {
 		trial_id : 'end',
 		exp_id : 'dietary_decision'
 	},
-	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br>Please press ENTER to proceed to the survey.</p></div>',
+	text : '<div class = centerbox><p class = "center-block-text">Thanks for completing this task!<br>Please press <strong> ENTER </strong> to proceed to the survey.</p></div>',
 	cont_key : [ 13 ],
 	timing_post_trial : 0,
 	on_finish : assessPerformance
@@ -437,7 +439,7 @@ var start_health_block = {
 	data : {
 		trial_id : 'start_health'
 	},
-	text : '<div class = centerbox><p class = "center-block-text">In the next block of trials, rate the healthiness of each food item without regard for its taste. Press <strong>enter</strong> to begin.</p></div>',
+	text : '<div class = centerbox><p class = "center-block-text">In the next block of trials, rate the <strong> HEALTHINESS </strong> of each food item without regard for its taste. Press <strong>enter</strong> to begin.</p></div>',
 	cont_key : [ 13 ],
 	timing_post_trial : 500,
 	on_finish : function() {
@@ -451,7 +453,7 @@ var start_taste_block = {
 		trial_id : 'start_taste'
 	},
 	timing_response : 180000,
-	text : '<div class = centerbox><p class = "center-block-text">In the next block of trials, rate the tastiness of each food item without regard for its healthiness. Press <strong>enter</strong> to begin.</p></div>',
+	text : '<div class = centerbox><p class = "center-block-text">In the next block of trials, rate the <strong> TASTINESS </strong> of each food item without regard for its healthiness. Press <strong>enter</strong> to begin.</p></div>',
 	cont_key : [ 13 ],
 	timing_post_trial : 500,
 	on_finish : function() {
