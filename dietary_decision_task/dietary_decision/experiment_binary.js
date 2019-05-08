@@ -91,10 +91,15 @@ var getDecisionStim = function() {
 
 	var left_stim = base_path + curr_pairing[0]
 	var right_stim = base_path + curr_pairing[1]
-	return "<div class ='left center-content'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
+	// return "<div class ='left center-content'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
+	// 		+ ' </button></div>'
+	// 		+ "<div class ='right center-content'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
+	// 		+ ' </button></div>' 
+	return "<div class = 'dd_choice_div'> <div class = 'dd_left_image'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
 			+ ' </button></div>'
-			+ "<div class ='right center-content'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
-			+ ' </button></div>' 
+			+ "<div class = 'dd_right_image'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
+			+ ' </button></div></div>' 
+
 }
 
 
@@ -238,7 +243,7 @@ var taste_response_area = '<div class = dd_response_div>'
 // var decision_response_area = '<div class = dd_response_div>'
 // 		+ '<button class = dd_response_button id = Left_Stim>Left</button>'
 // 		+ '<button class = dd_response_button id = Right_Stim>Right</button></div>'
-var decision_response_area = '<div class = dd_response_div>'
+var decision_response_area = '<div class = dd_choice_div>'
 		+ '<button class = dd_image_button_left id = Left_Stim>Left</button>'
 		+ '<button class = dd_image_button_right id = Right_Stim>Right</button></div>'
 

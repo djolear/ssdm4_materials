@@ -43,6 +43,16 @@
   transform: translate(-50%,140%);
 }
 
+.dd_choice_div {
+  width: 60vw;
+  height: 8vw;
+  position:absolute;
+  top:10%;
+  left:10%;
+  /*margin-right:-50%;*/
+  /*transform: translate(-50%,140%);*/
+}
+
 .dd_response_button {
   width: 7vw;
   height: 7vw;
@@ -55,9 +65,34 @@
   vertical-align:top;
 }
 
+.dd_left_image {
+  float:left;
+
+}
+
+.dd_right_image {
+  float:right;
+}
+
 .dd_image_button_left {
   max-width: 25px;
   max-height: 25px;
+  background: #505050;
+  margin: 1vw;
+  /*position: relative;*/
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  color: #fff;
+  /*border-radius:15px;*/
+  font-size: 22px;
+  vertical-align:top;
+  float: left;
+}
+
+.dd_image_button {
+  width: 7vw;
+  height: 7vw;
   background: #505050;
   margin: 1vw;
   position: relative;
@@ -65,17 +100,20 @@
   border-radius:15px;
   font-size: 22px;
   vertical-align:top;
-  float: left;
+
 }
 
 .dd_image_button_right {
   max-width: 25px;
-  max-height: 25px;
+  max-height: 50px;
   background: #505050;
   margin: 1vw;
-  position: relative;
+  /*position: relative;*/
+  position: absolute;
+  top: 15px;
+  right: 50px;
   color: #fff;
-  border-radius:15px;
+  /*border-radius:15px;*/
   font-size: 22px;
   vertical-align:top;
   float: right;
