@@ -86,9 +86,7 @@ var getTasteStim = function() {
 
 var getDecisionStim = function() {
 	// curr_stim = decision_stims.shift()
-
 	curr_pairing = pairings_list.shift();
-
 	var left_stim = base_path + curr_pairing[0]
 	var right_stim = base_path + curr_pairing[1]
 	// return "<div class ='left center-content'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
@@ -99,7 +97,10 @@ var getDecisionStim = function() {
 			+ ' </button></div>'
 			+ "<div class = 'dd_right_image'><button class = dd_choice_button id = Right_Stim><img src = " + right_stim
 			+ ' </button></div></div>' 
+}
 
+var getResponseNextStim = function () {
+		return decision_response_next_area
 }
 
 
@@ -225,6 +226,8 @@ var tasty_responses = [ 'Very_Untasty', 'Untasty', 'Neutral', 'Tasty',
 		'Very_Tasty' ]
 var decision_responses = [ 'Left_Stim', 'Right_Stim' ]
 
+var decision_response_next = ['Continue']
+
 var health_response_area = '<div class = dd_response_div>'
 		+ '<button class = dd_response_button id = Very_Unhealthy>Very Unhealthy</button>'
 		+ '<button class = dd_response_button id = Unhealthy>Unhealthy</button>'
@@ -246,6 +249,9 @@ var taste_response_area = '<div class = dd_response_div>'
 var decision_response_area = '<div class = dd_choice_div>'
 		+ '<button class = dd_image_button_left id = Left_Stim>Left</button>'
 		+ '<button class = dd_image_button_right id = Right_Stim>Right</button></div>'
+
+var decision_response_next_area = '<div class = dd_response_div>'
+		+ '<button class = dd_response_button id = continue>Continue</button></div>'
 
 
 
@@ -394,6 +400,10 @@ var instruction_node = {
 	}
 }
 
+
+
+
+
 var start_health_block = {
 	type : 'poldrack-text',
 	timing_response : 180000,
@@ -489,6 +499,24 @@ var health_block = {
 	}
 }
 
+var inbetween_choice = {
+	type : 'single-stim-button',
+	stimulus : getResponseNextStim,
+	//button_class : 'dd_continue_button',
+	button_class : 'dd_response_button',
+	data : {
+		trial_id : 'stim',
+		exp_stage : 'next_choice'
+	},
+	timing_stim : 4000,
+	timing_response : 4000,
+	response_ends_trial : true,
+	timing_post_trial : 500,
+	on_finish : function(data) {
+
+	}
+}
+
 var taste_block = {
 	type : 'single-stim-button',
 	// stimulus: getTasteStim,
@@ -573,6 +601,8 @@ dietary_decision_experiment.push(setup_block);
 dietary_decision_experiment.push(start_decision_block);
 for (var i = 0; i < NUMPAIRINGS; i++) {
 	dietary_decision_experiment.push(decision_block);
+	dietary_decision_experiment.push(inbetween_choice);
+
 }
 // dietary_decision_experiment.push(post_task_block)
 dietary_decision_experiment.push(end_block);
