@@ -65,6 +65,19 @@
   vertical-align:top;
 }
 
+.dd_choice_button {
+  width: 7vw;
+  height: 7vw;
+  /*background: #505050;*/
+  /*margin: 1vw;*/
+  position: relative;
+  color: #fff;
+  /*border-radius:15px;*/
+  font-size: 22px;
+  vertical-align:top;
+}
+
+
 .dd_left_image {
   float:left;
 
@@ -90,10 +103,14 @@
   float: left;
 }
 
+.dd_image_button_left:hover {
+  color: red;
+}
+
 .dd_image_button {
   width: 7vw;
   height: 7vw;
-  background: #505050;
+  background: #000000;
   margin: 1vw;
   position: relative;
   color: #fff;
@@ -105,8 +122,8 @@
 
 .dd_image_button_right {
   max-width: 25px;
-  max-height: 50px;
-  background: #505050;
+  max-height: 25px;
+  background: #000000;
   margin: 1vw;
   /*position: relative;*/
   position: absolute;
@@ -117,6 +134,10 @@
   font-size: 22px;
   vertical-align:top;
   float: right;
+}
+
+.dd_image_button_right:hover {
+  color: red;
 }
 
 .dd_response_button:hover {

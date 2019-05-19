@@ -95,9 +95,9 @@ var getDecisionStim = function() {
 	// 		+ ' </button></div>'
 	// 		+ "<div class ='right center-content'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
 	// 		+ ' </button></div>' 
-	return "<div class = 'dd_choice_div'> <div class = 'dd_left_image'><button class = dd_response_button id = Left_Stim><img src = " + left_stim
+	return "<div class = 'dd_choice_div'> <div class = 'dd_left_image'><button class = dd_choice_button id = Left_Stim><img src = " + left_stim
 			+ ' </button></div>'
-			+ "<div class = 'dd_right_image'><button class = dd_response_button id = Right_Stim><img src = " + right_stim
+			+ "<div class = 'dd_right_image'><button class = dd_choice_button id = Right_Stim><img src = " + right_stim
 			+ ' </button></div></div>' 
 
 }
@@ -520,7 +520,7 @@ var taste_block = {
 var decision_block = {
 	type : 'single-stim-button',
 	stimulus : getDecisionStim,
-	button_class : 'dd_response_button',
+	button_class : 'dd_choice_button',
 	data : {
 		trial_id : 'stim',
 		exp_stage : 'decision'
